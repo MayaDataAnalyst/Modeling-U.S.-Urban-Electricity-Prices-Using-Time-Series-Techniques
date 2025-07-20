@@ -25,6 +25,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 ##### **Target Variable:**
 
 **Average Monthly Electricity Price ($/kWh) – U.S. City Average**: This is the primary time series used in this project for developing time series models.  
+> ***Note:*** The original dataset had a missing value for September 1985. To address this, the missing value was imputed using the average of the electricity prices from August and October 1985.
 
 <img width="1165" height="492" alt="image" src="https://github.com/user-attachments/assets/f2c6821b-dd4e-4048-b0e3-e66dfef7c092" />
 
@@ -37,11 +38,9 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 - **Average Monthly Temperature (in °F)**  
 - **Monthly Population Estimates**
 
-<img width="1188" height="805" alt="image" src="https://github.com/user-attachments/assets/17439bba-d342-4310-a8ed-36a04369eb38" />
-
----
-
 > ***Note:*** These external regressors were evaluated to understand their influence on electricity prices and improve prediction accuracy.
+
+<img width="1188" height="805" alt="image" src="https://github.com/user-attachments/assets/17439bba-d342-4310-a8ed-36a04369eb38" />
 
 ---
 
@@ -70,3 +69,20 @@ The following time series models were applied to model and predict monthly elect
 - **SARIMA model with external regressors**
 - **SARIMA model without external regressors**
 - **Holt-Winters model (without external regressors)**
+
+---
+---
+
+### Scatter Plots of Monthly Electricity Price ($/kWh) vs. Potential External Regressors
+<img width="1189" height="765" alt="image" src="https://github.com/user-attachments/assets/abf80284-3305-41ae-b5a3-9075d72dcb28" />
+
+### Dual-Axis Time Series Plot of Monthly Electricity Price and Natural Gas Price
+<img width="1190" height="490" alt="image" src="https://github.com/user-attachments/assets/075ef290-0b0e-4173-aa36-b50b73679bc7" />
+
+### **Capturing Natural Gas Price Spikes Using a Dummy Regressor**
+The dual-axis line plot above reveals a clear pattern: sudden increases in natural gas prices frequently coincide with jumps in monthly electricity prices. This relationship is expected, given that natural gas has become the dominant source of electricity generation in the U.S., particularly after 2018.
+Neverthless, unlike other external regressors—such as utility production index, temperature, and population, which contains full data coverage from January 1980, the Henry Hub natural gas price data is only available from January 1997 onward. This limited temporal coverage posed a challenge for incorporating gas price effects on monthly electricity price. To address this, a binary indicator variable named **spike** was created to represent gas price surge periods. This dummy variable is assigned a value of 1 for a 4-month period if the average natural gas price in that current 4-month window is higher than the average values of the preceding and following 4-month windows plus half the standard deviation above the overall mean gas price. Otherwise, the dummy variable remains 0. This logic was implemented using a sliding window approach with a step size of 4 months, ensuring detection of localized gas price spikes while preventing overlapping flags. The graph below displays the dual-axis plot of monthly electricity and natural gas prices with spike indicators.
+
+<img width="1189" height="495" alt="image" src="https://github.com/user-attachments/assets/962734ab-79f0-430d-9d74-33e1d8ccaf10" />
+
+---
