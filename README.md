@@ -76,6 +76,8 @@ The following time series models were applied to model and predict monthly elect
 ### Scatter Plots of Monthly Electricity Price ($/kWh) vs. Potential External Regressors
 <img width="1189" height="765" alt="image" src="https://github.com/user-attachments/assets/abf80284-3305-41ae-b5a3-9075d72dcb28" />
 
+---
+
 ### Dual-Axis Time Series Plot of Monthly Electricity Price and Natural Gas Price
 <img width="1190" height="490" alt="image" src="https://github.com/user-attachments/assets/075ef290-0b0e-4173-aa36-b50b73679bc7" />
 
