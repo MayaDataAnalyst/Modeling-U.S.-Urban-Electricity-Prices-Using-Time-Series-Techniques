@@ -72,7 +72,6 @@ The following time series models were applied to model and predict monthly elect
 - **Holt-Winters model (without external regressors)**
 
 ---
----
 
 ## **Data Preprocessing & Exploratory Analysis**
 ### Scatter Plots of Monthly Electricity Price ($/kWh) vs. Potential External Regressors
