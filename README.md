@@ -26,6 +26,9 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 **Average Monthly Electricity Price ($/kWh) – U.S. City Average**: This is the primary time series used in this project for developing time series models.  
 
+<img width="1165" height="492" alt="image" src="https://github.com/user-attachments/assets/f2c6821b-dd4e-4048-b0e3-e66dfef7c092" />
+
+---
 
 ##### **List of Potential External Regressors:**
 
@@ -34,6 +37,9 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 - **Average Monthly Temperature (in °F)**  
 - **Monthly Population Estimates**
 
+<img width="1188" height="805" alt="image" src="https://github.com/user-attachments/assets/17439bba-d342-4310-a8ed-36a04369eb38" />
+
+---
 
 > ***Note:*** These external regressors were evaluated to understand their influence on electricity prices and improve prediction accuracy.
 
