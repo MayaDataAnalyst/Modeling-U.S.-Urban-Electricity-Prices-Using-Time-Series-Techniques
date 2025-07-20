@@ -1,2 +1,11 @@
-# Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques
+# **Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
 Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
+<br>
+
+## **PROJECT SUMMARY**
+As of May 2025, the average residential electricity rate in the United States is 0.182 dollar (18.2 cents) per kilowatt-hour (kWh). This cost can vary significantly depending on the geographic region, utility provider, and pricing plan. For example, Hawaii is among the states with the highest electricity rates, while North Dakota has some of the lowest. The primary objective of this project was to model and predict **average monthly electricity prices** ($/kWh) in the United States. To accomplish this, three time series forecasting techniques were applied: **Facebook Prophet**,
+**SARIMA**, and **Holt-Winters (Triple Exponential Smoothing)**. The dataset used in this project were collected from various sources, spanning from **January 1980 to March 2025**. Models were trained on data from **January 1980 to December 2022** and evaluated on a test set from **January 2023 to March 2025**.
+
+To enhance prediction accuracy, several **external regressors** were incorporated into the Facebook Prophet and SARIMA models. Among the candidate models, the **Facebook Prophet model with external regressors** significantly outperformed SARIMA and Holt-Winters in terms of **RMSE** and **MAE**, indicating superior predictive accuracy. The inclusion of variables such as the **monthly production index of utilities**, **monthly population**, and a **gas price spike indicator** helped the model better capture volatility and seasonal behavior in electricity prices. In contrast, the Prophet model without external regressors and Holt-Winters yielded substantially poorer predictive performance.
+
+The findings of this project highlight that both **historical patterns** (e.g., trend and seasonality) and **key external factors** play an important role in predicitng time-varying electricity prices. Practically speaking, the results provide valuable insights into long-term electricity price trends and can help decision makers in prioritizing **infrastructure investment** and **operational planning** efforts in the energy sector.
