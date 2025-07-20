@@ -17,12 +17,13 @@ To enhance prediction accuracy, several **external regressors** were incorporate
 The findings of this project highlight that both **historical patterns** (e.g., trend and seasonality) and **key external factors** play an important role in predicitng time-varying electricity prices. Practically speaking, the results provide valuable insights into long-term electricity price trends and can help decision makers in prioritizing **infrastructure investment** and **operational planning** efforts in the energy sector.
 
 ---
+---
 
-### **Additional Details on Data Collection and Applied Time Series Models**
+## **Data Collection and Applied Time Series Models**
 
-#### **Data Collection and Processing**
+### **Data Collection and Processing**
 
-#### **Target Variable:**
+### **Target Variable:**
 
 **Average Monthly Electricity Price ($/kWh) – U.S. City Average**: This is the primary time series used in this project for developing time series models.  
 > ***Note:*** The original dataset had a missing value for September 1985. To address this, the missing value was imputed using the average of the electricity prices from August and October 1985.
@@ -31,7 +32,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-#### **List of Potential External Regressors:**
+### **List of Potential External Regressors:**
 
 - **Monthly Production Index of electric and gas utilities**
 - **Henry Hub Natural Gas Spot Price**  
@@ -44,7 +45,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-#### **Data Sources**
+### **Data Sources**
 
 - **Average Monthly Electricity Price**  
   Retrieved from the [U.S.  Federal Reserve Economic Data (FRED)](https://fred.stlouisfed.org/series/APU000072610)
@@ -58,11 +59,11 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-#### **Note about data collection**
+### **Note about data collection**
 - Data on the variables used in this project, including the target and external regressors, are based on **nationwide U.S. data**, not specific to any individual state or region.
 
 ---
-#### **List of Time Series Models Developed in this Project**
+### **List of Time Series Models Developed in this Project**
 The following time series models were applied to model and predict monthly electricity prices:
 - **Facebook Prophet model with external regressors**
 - **Facebook Prophet model without external regressors**
@@ -73,6 +74,7 @@ The following time series models were applied to model and predict monthly elect
 ---
 ---
 
+## ** Data Preprocessing & Exploratory Analysis**
 ### Scatter Plots of Monthly Electricity Price ($/kWh) vs. Potential External Regressors
 <img width="1189" height="765" alt="image" src="https://github.com/user-attachments/assets/abf80284-3305-41ae-b5a3-9075d72dcb28" />
 
@@ -87,4 +89,155 @@ Neverthless, unlike other external regressors—such as utility production index
 
 <img width="1189" height="495" alt="image" src="https://github.com/user-attachments/assets/962734ab-79f0-430d-9d74-33e1d8ccaf10" />
 
+<br> <br>
+**As illustarted in the dual-axis plot above**, there is a direct relationship between natural gas price spikes and subsequent increases in electricity prices. Notably, during the four-month period from **May 2022 to August 2022**, natural gas prices experienced a sharp surge. Following this spike, a significant rise in electricity prices was observed, indicating a potential lagged effect of natural gas cost changes on electricity pricing. Similar patterns appear during other periods as well, where electricity prices responded to natural gas price volatility. This relationship is consistent with expectations, given that natural gas has recently become the primary source of electricity generation in the United States.
+
+
 ---
+### **TRAIN-TEST SPLIT FOR MODEL DEVELOPMENT & EVALUATION**
+
+To develop and evaluate the prediction performance of the alternative models, the dataset was divided into two subsets:
+
+- **Training Sample (95%)**: Includes all data points prior to January 2023, used to train the models.
+- **Test Sample (5%)**: Contains data from January 2023 onward, reserved for testing and evaluating the models' prediction accuracy.
+
+<img width="1010" height="492" alt="image" src="https://github.com/user-attachments/assets/af662186-74ad-417b-999e-93569efc0c3d" />
+
+---
+
+## **TIME SERIES MODEL DEVELOPMENT AND COMPARISON**
+
+This section presents the development and evaluation of multiple time series forecasting models to predict monthly electricity prices. The models implemented include:
+
+**1. Facebook Prophet**  
+**2. SARIMA (Seasonal Autoregressive Integrated Moving Average)**  
+**3. Holt-Winters Triple Exponential Smoothing**
+
+Each model was developed on training data and assessed on test data using common prediction metrics to compare their performance. The goal was to identify the most accurate and robust model for capturing both trend and seasonal patterns in electricity prices.
+
+## **1. Fitting the Facebook Prophet Model**
+
+The **Facebook Prophet** model is a powerful time series forecasting model developed by Facebook’s Core Data Science team. It offers several advantages over traditional forecasting methods, including the ability to:
+- Incorporate **holiday effects**
+- Model **multiple built-in and customized seasonalities** (e.g., yearly, weekly, or custom)
+- Detect and model **changepoints** in time series trends
+
+Like SARIMA model, Prophet also supports **external regressors**, but with a key difference: Prophet applies **ridge regularization (L2 penalty)** to its regressors by default. This helps reduce overfitting and mitigate the impact of multicollinearity among predictors.
+
+---
+
+**Modeling Strategy**
+
+To evaluate the impact of external variables on electricity price prediction, two Prophet models were developed and compared:
+
+1. **Model with external regressors**, including:
+   - `Utility Production Index`
+   - `Population`
+   - `Average Monthly Temperature`
+   - `spike` (a dummy variable indicating natural gas price spikes)
+
+2. **Model without external regressors**
+
+
+Since Prophet’s prediction performance can highly be influenced by changepoint-related hyperparameters, a **custom grid search** was implemented to tune the following:
+
+- `changepoint_prior_scale`  
+- `n_changepoints`  
+- `changepoint_range`
+
+Each combination of hyperparameters was evaluated using **time series cross-validation** from the Facebook Prophet diagnostics module, with performance assessed based on the **average Root Mean Squared Error (RMSE)**.
+
+---
+---
+
+### **1.1. Fitting the Facebook Prophet Model with External Regressors**
+
+#### **Key Implementation Steps**
+
+- Define a parameter grid for changepoint hyperparameter tuning
+- Add external regressors to the model
+- Fit the model using the training dataset
+- Perform cross-validation using prophet.diagnostics.cross_validation()
+- Select the best model configuration based on validation RMSE
+
+The following **optimal changepoint-related parameters** were extracted from the algorithm used to identify the best-fitting model. These parameters were used to fit the Facebook Prophet model.
+- 'changepoint_prior_scale': 0.2
+- 'changepoint_range': 1.0
+- 'n_changepoints': 10
+
+#### **Facebook Prophet Model Prediction & Visualization for the Training & Test Sets**
+The Facebook Prophet model above was used to predict monthly electricity price over two separate time periods:
+- **Training period**: 516 future observations spanning from **January 1980 to December 2022**.
+- **Test period**: 29 observations from **January 2023 to March 2025**, used to evaluate the model's predictive accuracy on unseen data.
+
+The predicted values for the aformentioned periods were then visualized alongside the correspodning actual samples to assess the model’s performance, especially for the test period.
+
+**Note:** The fitted model is capable of forecasting monthly electricity prices beyond March 2025, given that future values for the external regressors (e.g., utility production, population, and gas price spikes) are available. However, since these future regressor values are currently unavailable, the prediction was limited to the training and test periods only.
+
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/0eb9eaab-ca37-431f-bd0f-0069a17570ce" />
+
+---
+---
+
+### **1.2. Fitting the Facebook Prophet Model without External Regressors**
+A similar iterative algorithm used for the Facebook Prophet model with external regressors was employed to tune changepoint hyperparameters for the model without external regressors. The following steps were taken to identify the best-fitting configuration:
+- Define a parameter grid for changepoint hyperparameter tuning
+- Fit the model using the training dataset
+- Perform cross-validation using prophet.diagnostics.cross_validation()
+- Select the best model configuration based on validation RMSE
+
+The following **optimal changepoint-related parameters** were found from the algorithm used. These parameters were used to fit the Facebook Prophet model without external regressors.
+- 'changepoint_prior_scale': 0.1
+- 'changepoint_range': 0.9
+- 'n_changepoints': 50
+
+#### **Facebook Prophet Model (without Regressors) Prediction & Visualization for the Training & Test Sets**
+- **Training period**: 516 future observations spanning from **January 1980 to December 2022**.
+
+- **Test period**: 29 observations from **January 2023 to March 2025**, used to evaluate the model's predictive accuracy on unseen data.
+
+**Note:** Since the Facebook Prophet model above did not incorporate external regressors, it is capable of forecasting monthly electricity prices beyond March 2025. However, the prediction was limited to the training and test periods to enable a more consistent and meaningful comparison with the counterpart model that includes external regressors.
+
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/9db7234c-2fe6-47f9-8776-25570408645c" />
+
+### **Plotting the RMSE and MAE Metrics for the Facebook Prophet Model with and without External Regressors**
+<img width="790" height="390" alt="image" src="https://github.com/user-attachments/assets/ba94e9e9-6586-4042-8f42-bd88e6d37ebd" />
+
+#### **Inference from the Barplot of RMSE and MAE**
+The bar plot comparison of RMSE and MAE on the test dataset clearly shows that the Facebook Prophet model with external regressors substantially outperformed the model without them. Including monthly utility production index, and population, and gas price spike indicator as external features improved prediction accuracy by approximately 45% in RMSE and 47% in MAE, highlighting the value of incorporating relevant contextual variables.
+
+---
+### **Actual vs. Predicted Electricity Prices for the Facebook Prophet Model with and without External Regressors**
+
+This superiority of the FB with regressors is also visually evident in the line plot below, where the blue curve (FB with external regressors) follows more closely the actual electricity price (green dashed line) than the orange curve (FB without external regressors).
+
+<img width="1952" height="797" alt="image" src="https://github.com/user-attachments/assets/6bad9061-07ba-48e2-884e-78b8f9fabe82" />
+
+---
+---
+
+## **2. Fitting the SARIMA Model with External Regressors**
+
+The **Seasonal Autoregressive Integrated Moving Average (SARIMA)** model is an advanced extension of the ARIMA model. It accounts for both non-seasonal and seasonal components of time series data, making it suitable for capturing complex temporal patterns such as trends and periodic fluctuations. SARIMA is widely used in domains such as economics, energy, and meteorology to forecast time-dependent phenomena.
+
+In this project, the **`auto_arima()`** function from the `pmdarima` library was used to automatically identify the optimal combination of model parameters `(p, d, q, P, D, Q)` based on information-based performance criteria, such as **AIC** and **BIC**. The function internally handles differencing and seasonal component selection, streamlining the model selection process.
+
+---
+
+### **2.1. Fitting the SARIMA Model with External Regressors**
+#### **Important tips when using external regressors in the SARIMA model**
+
+- **(A) Manual Scaling of Regressors**  
+  Unlike the Facebook Prophet model, the SARIMA does not include any built-in mechanism for scaling external regressors. Therefore, scaling must be performed manually. In this project, `StandardScaler()` from the `sklearn.preprocessing` module was used to standardize the regressors before model fitting.
+
+- **(B) Handling Multicollinearity**  
+  In contrast to the Facebook Prophet model, the SARIMA model does not include a regularization term to address multicollinearity among external regressors. If multicollinearity is present, one solution is to remove the regressor that has a weaker impact on the target variable.  
+  In this project, a strong correlation was found between the **utility production index** and **population**. Between these two inter-correlated variables, **population** was found to have a statistically significant effect on monthly electricity prices (p-value < 0.05). Therefore, it was retained in the model.
+
+- **(C) Variable Selection**  
+  A **backward stepwise selection** approach was used to iteratively include only statistically significant external regressors. Selection was guided by **AIC/BIC** values and **Wald statistics**, using a 5% significance threshold.
+
+---
+
+
+
