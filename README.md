@@ -22,7 +22,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 #### **Data Collection and Processing**
 
-##### **Target Variable:**
+#### **Target Variable:**
 
 **Average Monthly Electricity Price ($/kWh) – U.S. City Average**: This is the primary time series used in this project for developing time series models.  
 > ***Note:*** The original dataset had a missing value for September 1985. To address this, the missing value was imputed using the average of the electricity prices from August and October 1985.
@@ -58,7 +58,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-##### **Note about data collection**
+#### **Note about data collection**
 - Data on the variables used in this project, including the target and external regressors, are based on **nationwide U.S. data**, not specific to any individual state or region.
 
 ---
