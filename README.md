@@ -1,4 +1,4 @@
-<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/9a09b5de-9b9f-4a68-abdd-dcb92738089c" /># **Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
+**Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
 
 Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
 
