@@ -9,7 +9,7 @@ As of May 2025, the average residential electricity rate in the United States wa
 
 <img width="2091" height="770" alt="image" src="https://github.com/user-attachments/assets/e8373d6c-b494-4b38-80c5-20f5eacee9f3" />
 
-<br> 
+<br> <br>
 
 The primary objective of this project was to model and predict **average monthly electricity prices** ($/kWh) in the United States. To accomplish this, three time series forecasting techniques were applied: **Facebook Prophet**, **SARIMA**, and **Holt-Winters (Triple Exponential Smoothing)**. The dataset used in this project were collected from various sources, spanning from **January 1980 to March 2025**. Models were trained on data from **January 1980 to December 2022** and evaluated on a test set from **January 2023 to March 2025**.
 
