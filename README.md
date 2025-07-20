@@ -1,4 +1,4 @@
-# **Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/9a09b5de-9b9f-4a68-abdd-dcb92738089c" /># **Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
 
 Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
 
@@ -174,7 +174,7 @@ The predicted values for the aformentioned periods were then visualized alongsid
 
 **Note:** The fitted model is capable of forecasting monthly electricity prices beyond March 2025, given that future values for the external regressors (e.g., utility production, population, and gas price spikes) are available. However, since these future regressor values are currently unavailable, the prediction was limited to the training and test periods only.
 
-<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/0eb9eaab-ca37-431f-bd0f-0069a17570ce" />
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/3296deb4-63cb-46e4-87aa-2da1a04cd521" />
 
 ---
 ---
@@ -198,7 +198,7 @@ The following **optimal changepoint-related parameters** were found from the alg
 
 **Note:** Since the Facebook Prophet model above did not incorporate external regressors, it is capable of forecasting monthly electricity prices beyond March 2025. However, the prediction was limited to the training and test periods to enable a more consistent and meaningful comparison with the counterpart model that includes external regressors.
 
-<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/9db7234c-2fe6-47f9-8776-25570408645c" />
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/9ff61e5e-e9f2-4354-a543-265903285cfd" />
 
 ### **Plotting the RMSE and MAE Metrics for the Facebook Prophet Model with and without External Regressors**
 <img width="790" height="390" alt="image" src="https://github.com/user-attachments/assets/ba94e9e9-6586-4042-8f42-bd88e6d37ebd" />
@@ -209,14 +209,14 @@ The bar plot comparison of RMSE and MAE on the test dataset clearly shows that t
 ---
 ### **Actual vs. Predicted Electricity Prices for the Facebook Prophet Model with and without External Regressors**
 
-This superiority of the FB with regressors is also visually evident in the line plot below, where the blue curve (FB with external regressors) follows more closely the actual electricity price (green dashed line) than the orange curve (FB without external regressors).
+This superiority of the Facebook Prophet model with regressors is also visually evident in the line plot below, where the blue curve representing the FB-Prophet model with external regressors follows more closely the actual electricity price (green dashed line) than the orange curve (FB-Prophet without external regressors).
 
 <img width="1952" height="797" alt="image" src="https://github.com/user-attachments/assets/6bad9061-07ba-48e2-884e-78b8f9fabe82" />
 
 ---
 ---
 
-## **2. Fitting the SARIMA Model with External Regressors**
+## **2. Fitting the SARIMA Model**
 
 The **Seasonal Autoregressive Integrated Moving Average (SARIMA)** model is an advanced extension of the ARIMA model. It accounts for both non-seasonal and seasonal components of time series data, making it suitable for capturing complex temporal patterns such as trends and periodic fluctuations. SARIMA is widely used in domains such as economics, energy, and meteorology to forecast time-dependent phenomena.
 
@@ -239,5 +239,34 @@ In this project, the **`auto_arima()`** function from the `pmdarima` library was
 
 ---
 
+#### **Finding Optimal SARIMA Model Order (p, d, q)(P, D, Q)[12]**
+The `auto_arima()` function selected **ARIMA(0,1,0)(0,1,1)[12]**, with **monthly population** as the sole external regressor, as the optimal model based on the AIC criterion.
 
+Similar to the Facebook Prophet model, a total of 29 observations spanning from **January 2023 to March 2025**, was used to evaluate the SARIMA model's predictive accuracy on unseen data. The predicted values were then visualized alongside the actual training and test samples to assess the model’s performance and long-term forecasting behavior.
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/976d3933-60b3-4680-a1c0-267139c67377" />
+
+---
+### **2.2. Fitting the SARIMA Model without External Regressors**
+A similar modeling process to that used for the SARIMA model with external regressors was followed here, but without including any external predictors (e.g., population, utility production index). The `auto_arima()` function selected **ARIMA(0,1,0)(0,1,1)[12]** as the optimal model based on the AIC criterion.
+
+<img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/b7a49392-f531-4145-ab3f-9b9ad128c062" />
+
+### **Plotting the RMSE and MAE Metrics for the SARIMA Model with and without External Regressors**
+<img width="790" height="390" alt="image" src="https://github.com/user-attachments/assets/0e7cecaa-f4ee-4cd9-8332-9a3ed1ef2b10" />
+#### **Inference from the Barplot of RMSE and MAE for the SARIMA Models**
+The bar plot comparison of RMSE and MAE on the test dataset indicates that the **SARIMA model without external regressors** yielded better performance than the model that included monthly population as the only external predictor. Although this outcome may seem counterintuitive—given that external regressors are generally expected to enhance predictive performance—one possible explanation is that the inclusion of population, despite its statistical significance, may have introduced noise into the model or perhaps may not have captured variations in monthly electricity prices.
+
+---
+---
+## **3. Fitting the Holt-Winters (Triple Exponential Smoothing) Model**
+As previously mentioned, the Holt-Winters model does not support the inclusion of external regressors; therefore, none were incorporated into the model. The Holt-Winters model was fitted using the training sample, where both trend and seasonality were set to *additive*.
+<img width="1165" height="492" alt="image" src="https://github.com/user-attachments/assets/8c10216c-1dd8-4a67-85c0-c6405c9ca0d3" />
+
+---
+---
+
+## **COMPARISON OF RMSE AND MAE ACROSS TIME SERIES MODELS ON TEST DATA**
+The bar plot below of RMSE and MAE values on the test dataset for the time series models indicates that the **Facebook Prophet model with external regressors** achieved the best predictive performance among the candidate models, followed by the SARIMA model without external regressors.
+
+<img width="1089" height="490" alt="image" src="https://github.com/user-attachments/assets/458edf70-a16c-4b9f-8802-8b9e15a5ff69" />
 
