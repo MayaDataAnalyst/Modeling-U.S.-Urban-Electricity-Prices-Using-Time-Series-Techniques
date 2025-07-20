@@ -39,7 +39,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-##### **Data Sources**
+#### **Data Sources**
 
 - **Average Monthly Electricity Price**  
   Retrieved from the [U.S.  Federal Reserve Economic Data (FRED)](https://fred.stlouisfed.org/series/APU000072610)
