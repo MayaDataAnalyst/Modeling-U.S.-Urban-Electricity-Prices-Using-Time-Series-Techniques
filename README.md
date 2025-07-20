@@ -17,7 +17,6 @@ To enhance prediction accuracy, several **external regressors** were incorporate
 The findings of this project highlight that both **historical patterns** (e.g., trend and seasonality) and **key external factors** play an important role in predicitng time-varying electricity prices. Practically speaking, the results provide valuable insights into long-term electricity price trends and can help decision makers in prioritizing **infrastructure investment** and **operational planning** efforts in the energy sector.
 
 ---
----
 
 ## **Data Collection and Applied Time Series Models**
 
@@ -63,6 +62,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 - Data on the variables used in this project, including the target and external regressors, are based on **nationwide U.S. data**, not specific to any individual state or region.
 
 ---
+
 ### **List of Time Series Models Developed in this Project**
 The following time series models were applied to model and predict monthly electricity prices:
 - **Facebook Prophet model with external regressors**
@@ -91,8 +91,8 @@ Neverthless, unlike other external regressors—such as utility production index
 <br> <br>
 **As illustarted in the dual-axis plot above**, there is a direct relationship between natural gas price spikes and subsequent increases in electricity prices. Notably, during the four-month period from **May 2022 to August 2022**, natural gas prices experienced a sharp surge. Following this spike, a significant rise in electricity prices was observed, indicating a potential lagged effect of natural gas cost changes on electricity pricing. Similar patterns appear during other periods as well, where electricity prices responded to natural gas price volatility. This relationship is consistent with expectations, given that natural gas has recently become the primary source of electricity generation in the United States.
 
-
 ---
+
 ### **TRAIN-TEST SPLIT FOR MODEL DEVELOPMENT & EVALUATION**
 
 To develop and evaluate the prediction performance of the alternative models, the dataset was divided into two subsets:
@@ -147,7 +147,6 @@ Since Prophet’s prediction performance can highly be influenced by changepoint
 Each combination of hyperparameters was evaluated using **time series cross-validation** from the Facebook Prophet diagnostics module, with performance assessed based on the **average Root Mean Squared Error (RMSE)**.
 
 ---
----
 
 ### **1.1. Fitting the Facebook Prophet Model with External Regressors**
 
@@ -175,7 +174,6 @@ The predicted values for the aformentioned periods were then visualized alongsid
 
 <img width="1165" height="569" alt="image" src="https://github.com/user-attachments/assets/3296deb4-63cb-46e4-87aa-2da1a04cd521" />
 
----
 ---
 
 ### **1.2. Fitting the Facebook Prophet Model without External Regressors**
@@ -212,7 +210,6 @@ This superiority of the Facebook Prophet model with regressors is also visually 
 
 <img width="1952" height="797" alt="image" src="https://github.com/user-attachments/assets/6bad9061-07ba-48e2-884e-78b8f9fabe82" />
 
----
 ---
 
 ## **2. Fitting the SARIMA Model**
@@ -256,12 +253,11 @@ A similar modeling process to that used for the SARIMA model with external regre
 The bar plot comparison of RMSE and MAE on the test dataset indicates that the **SARIMA model without external regressors** yielded better performance than the model that included monthly population as the only external predictor. Although this outcome may seem counterintuitive—given that external regressors are generally expected to enhance predictive performance—one possible explanation is that the inclusion of population, despite its statistical significance, may have introduced noise into the model or perhaps may not have captured variations in monthly electricity prices.
 
 ---
----
+
 ## **3. Fitting the Holt-Winters (Triple Exponential Smoothing) Model**
 As previously mentioned, the Holt-Winters model does not support the inclusion of external regressors; therefore, none were incorporated into the model. The Holt-Winters model was fitted using the training sample, where both trend and seasonality were set to *additive*.
 <img width="1165" height="492" alt="image" src="https://github.com/user-attachments/assets/8c10216c-1dd8-4a67-85c0-c6405c9ca0d3" />
 
----
 ---
 
 ## **COMPARISON OF RMSE AND MAE ACROSS TIME SERIES MODELS ON TEST DATA**
@@ -269,3 +265,28 @@ The bar plot below of RMSE and MAE values on the test dataset for the time serie
 
 <img width="1089" height="490" alt="image" src="https://github.com/user-attachments/assets/458edf70-a16c-4b9f-8802-8b9e15a5ff69" />
 
+---
+
+## **Static and Interactive Plots of Actual vs. Predicted Electricity Prices across Fitted Models**
+The static and interactive plots below illustrate the actual (observed) and predicted monthly electricity prices over the test period (**January 2023 – May 2025**), generated using all the five time series forecasting models developed in this project.
+
+### **Static Plot:**
+<img width="1165" height="514" alt="image" src="https://github.com/user-attachments/assets/91c49581-b607-4ee1-8215-3d206105b867" />
+
+### **Interactive Plot:**
+<img width="2318" height="981" alt="image" src="https://github.com/user-attachments/assets/eda062ed-834c-4815-914a-4d3230815360" />
+
+---
+---
+
+As shown in the plots, the Facebook Prophet model with external regressors produced predictions that aligned more closely with the actual values compared to the other models. This outperformance can be attributed to the ability of the Facebook Prophet to capture nonlinear trends and multiple seasonalities (e.g., yearly or monthly patterns) while incorporating significant external predictors. Additionally, Facebook Prophet model handles structural changes in time series data through tuning its changepoint parameters, such as changepoint prior scale and number of changepoints. These allow the model to account for sudden jumps or drops in trend, which may be caused by external unobserved factors, contributing to more accurate predictions and future forecasts in real-world settings.
+
+Overall, the results suggest that Facebook Prophet with external regressors is well-suited for predicitng electricity prices when both trend dynamics and external factors play a significant role.
+
+---
+
+## **SUGGESTIONS FOR FUTURE WORK**
+As demonstrated in this project, the **Facebook Prophet model with external predictors** acheived the best performance on the unseen test dataset. However, given that the Facebook Prophet model is a relatively new time series model, its applicability in time series forecasting has not been as extensively validated as traditional approaches, like SARIMA or Holt-Winters.
+**For future research**, it is recommended to further explore the application of the Prophet model in modeling and forecasting other types of time-varying phenomena, particularly in domains where external regressors may play a significant role.
+
+Another promising avenue for future work involves applying supervised machine learning techniques, such as **XGBoost**, in modeling time series data, especially when dealing with multiple external features that may influence the target variable.
