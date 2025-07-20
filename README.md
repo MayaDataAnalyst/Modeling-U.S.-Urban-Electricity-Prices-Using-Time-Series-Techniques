@@ -1,13 +1,14 @@
 # **Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
+
 Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
-<br>
+---
 
 ## **PROJECT SUMMARY**
 As of May 2025, the average residential electricity rate in the United States is 0.182 dollar (18.2 cents) per kilowatt-hour (kWh). This cost can vary significantly depending on the geographic region, utility provider, and pricing plan. For example, Hawaii is among the states with the highest electricity rates, while North Dakota has some of the lowest. 
 
 <img width="2100" height="1129" alt="image" src="https://github.com/user-attachments/assets/f4c17b1a-b78b-422e-9534-f7d2703f8967" />
 
-<br>
+---
 The primary objective of this project was to model and predict **average monthly electricity prices** ($/kWh) in the United States. To accomplish this, three time series forecasting techniques were applied: **Facebook Prophet**,
 **SARIMA**, and **Holt-Winters (Triple Exponential Smoothing)**. The dataset used in this project were collected from various sources, spanning from **January 1980 to March 2025**. Models were trained on data from **January 1980 to December 2022** and evaluated on a test set from **January 2023 to March 2025**.
 
