@@ -31,7 +31,7 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 
 ---
 
-##### **List of Potential External Regressors:**
+#### **List of Potential External Regressors:**
 
 - **Monthly Production Index of electric and gas utilities**
 - **Henry Hub Natural Gas Spot Price**  
