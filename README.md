@@ -2,7 +2,7 @@
 
 Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
 
-<p> </p>
+<p> <p> </p>
 
 ## **PROJECT SUMMARY**
 As of May 2025, the average residential electricity rate in the United States was 0.182 dollar (18.2 cents) per kilowatt-hour (kWh). This cost can vary significantly depending on the geographic region, utility provider, and pricing plan. For example, Hawaii is among the states with the highest electricity rates, while North Dakota has some of the lowest. 
