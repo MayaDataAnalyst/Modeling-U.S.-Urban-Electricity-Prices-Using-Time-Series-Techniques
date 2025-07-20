@@ -269,6 +269,7 @@ The bar plot below of RMSE and MAE values on the test dataset for the time serie
 
 ## **Static and Interactive Plots of Actual vs. Predicted Electricity Prices across Fitted Models**
 The static and interactive plots below illustrate the actual (observed) and predicted monthly electricity prices over the test period (**January 2023 – May 2025**), generated using all the five time series forecasting models developed in this project.
+As shown in the plots, the Facebook Prophet model with external regressors produced predictions that aligned more closely with the actual values compared to the other models. This outperformance can be attributed to the ability of the Facebook Prophet to capture nonlinear trends and multiple seasonalities (e.g., yearly or monthly patterns) while incorporating significant external predictors. Additionally, Facebook Prophet model handles structural changes in time series data through tuning its changepoint parameters, such as changepoint prior scale and number of changepoints. These allow the model to account for sudden jumps or drops in trend, which may be caused by external unobserved factors, contributing to more accurate predictions and future forecasts in real-world settings. 
 
 ### **Static Plot:**
 <img width="1165" height="514" alt="image" src="https://github.com/user-attachments/assets/91c49581-b607-4ee1-8215-3d206105b867" />
@@ -277,12 +278,6 @@ The static and interactive plots below illustrate the actual (observed) and pred
 <img width="2318" height="981" alt="image" src="https://github.com/user-attachments/assets/eda062ed-834c-4815-914a-4d3230815360" />
 
 ---
----
-
-As shown in the plots, the Facebook Prophet model with external regressors produced predictions that aligned more closely with the actual values compared to the other models. This outperformance can be attributed to the ability of the Facebook Prophet to capture nonlinear trends and multiple seasonalities (e.g., yearly or monthly patterns) while incorporating significant external predictors. Additionally, Facebook Prophet model handles structural changes in time series data through tuning its changepoint parameters, such as changepoint prior scale and number of changepoints. These allow the model to account for sudden jumps or drops in trend, which may be caused by external unobserved factors, contributing to more accurate predictions and future forecasts in real-world settings.
-
-Overall, the results suggest that Facebook Prophet with external regressors is well-suited for predicitng electricity prices when both trend dynamics and external factors play a significant role.
-
 ---
 
 ## **SUGGESTIONS FOR FUTURE WORK**
