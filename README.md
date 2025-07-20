@@ -57,7 +57,6 @@ The findings of this project highlight that both **historical patterns** (e.g., 
 - Data on the variables used in this project, including the target and external regressors, are based on **nationwide U.S. data**, not specific to any individual state or region.
 
 ---
----
 #### **List of Time Series Models Developed in this Project**
 The following time series models were applied to model and predict monthly electricity prices:
 - **Facebook Prophet model with external regressors**
