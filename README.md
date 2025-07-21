@@ -115,6 +115,8 @@ This section presents the development and evaluation of multiple time series for
 
 Each model was developed on training data and assessed on test data using common prediction metrics to compare their performance. The goal was to identify the most accurate and robust model for capturing both trend and seasonal patterns in electricity prices.
 
+---
+
 ## **1. Fitting the Facebook Prophet Model**
 
 The **Facebook Prophet** model is a powerful time series forecasting model developed by Facebook’s Core Data Science team. It offers several advantages over traditional forecasting methods, including the ability to:
