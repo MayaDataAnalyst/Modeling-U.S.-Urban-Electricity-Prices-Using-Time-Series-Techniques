@@ -124,7 +124,7 @@ The **Facebook Prophet** model is a powerful time series forecasting model devel
 - Model **multiple built-in and customized seasonalities** (e.g., yearly, weekly, or custom)
 - Detect and model **changepoints** in time series trends
 
-Like SARIMA model, Prophet also supports **external regressors**, but with a key difference: Prophet applies **ridge regularization (L2 penalty)** to its regressors by default. This helps reduce overfitting and mitigate the impact of multicollinearity among predictors.
+Like SARIMA model, the Facebook Prophet model also supports **external regressors**, but with a key difference: it applies **ridge regularization (L2 penalty)** to its regressors by default. This helps reduce overfitting and mitigate the impact of multicollinearity among predictors.
 
 ---
 
@@ -139,9 +139,7 @@ To evaluate the impact of external variables on electricity price prediction, tw
    - `spike` (a dummy variable indicating natural gas price spikes)
 
 2. **Model without external regressors**
-
-
-Since Prophet’s prediction performance can highly be influenced by changepoint-related hyperparameters, a **custom grid search** was implemented to tune the following:
+Since the FB Prophet’s prediction performance can highly be influenced by changepoint-related hyperparameters, a **custom grid search** was implemented to tune the following:
 
 - `changepoint_prior_scale`  
 - `n_changepoints`  
