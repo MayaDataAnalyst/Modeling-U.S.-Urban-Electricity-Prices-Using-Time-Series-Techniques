@@ -98,8 +98,8 @@ Nevertheless, unlike other external regressors—such as utility production inde
 
 To develop and evaluate the prediction performance of the alternative models, the dataset was divided into two subsets:
 
-- **Training Sample (95%)**: Includes all data points prior to January 2023, used to train the models.
-- **Test Sample (5%)**: Contains data from January 2023 onward, reserved for testing and evaluating the models' prediction accuracy.
+- **Training Sample (~ 95%)**: Includes all data points prior to January 2023, used to train the models.
+- **Test Sample (~ 5%)**: Contains data from January 2023 onward, reserved for testing and evaluating the models' prediction accuracy.
 
 <img width="1010" height="492" alt="image" src="https://github.com/user-attachments/assets/af662186-74ad-417b-999e-93569efc0c3d" />
 
