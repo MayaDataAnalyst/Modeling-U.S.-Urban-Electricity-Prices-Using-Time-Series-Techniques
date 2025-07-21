@@ -283,6 +283,6 @@ As shown in the plots, the Facebook Prophet model with external regressors produ
 
 ## **SUGGESTIONS FOR FUTURE WORK**
 As demonstrated in this project, the **Facebook Prophet model with external predictors** acheived the best performance on the unseen test dataset. However, given that the Facebook Prophet model is a relatively new time series model, its applicability in time series forecasting has not been as extensively validated as traditional approaches, like SARIMA or Holt-Winters.
-**For future research**, it is recommended to further explore the application of the Prophet model in modeling and forecasting other types of time-varying phenomena, particularly in domains where external regressors may play a significant role.
+**For future work**, it is recommended to further explore the application of the FB Prophet model in modeling and forecasting other types of time-varying phenomena, particularly in domains where external regressors may play a significant role.
 
-Another promising avenue for future work involves applying supervised machine learning techniques, such as **XGBoost**, in modeling time series data, especially when dealing with multiple external features that may influence the target variable.
+Another promising avenue for future work involves applying supervised machine learning techniques, such as **XGBoost**, in modeling time series data  when dealing with multiple external features that may influence the target variable.
