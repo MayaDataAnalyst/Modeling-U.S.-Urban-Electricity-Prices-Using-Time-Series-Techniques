@@ -1,6 +1,6 @@
-**Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques**
+**Modeling-U.S.-Urban-Electricity-Prices-Using-Time-Series-Techniques:-Exploring-the-Impact-of-External-Regressors**
 
-Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models (with &amp; without external regressors)
+Time series forecasting of U.S. urban electricity prices using SARIMA, Holt-Winters, and Facebook Prophet Models: Exploring the Impact of External Regressors
 
 <p> </p>
 
